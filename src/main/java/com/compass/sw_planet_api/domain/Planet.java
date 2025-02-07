@@ -1,5 +1,7 @@
 package com.compass.sw_planet_api.domain;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +19,12 @@ public class Planet {
     private String name;
     private String terrain;
     private String climate;
+
+    public Planet(String name, String terrain, String climate) {
+        this.name = name;
+        this.terrain = terrain;
+        this.climate = climate;
+    }
 
     public Long getId() {
         return id;
@@ -42,6 +50,9 @@ public class Planet {
     public void setClimate(String climate) {
         this.climate = climate;
     }
-
     
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(obj, this);
+    }
 }
